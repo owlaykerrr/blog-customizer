@@ -9,6 +9,7 @@ import {
 	ArticleStateType,
 	backgroundColors,
 	contentWidthArr,
+	defaultArticleState,
 	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -30,6 +31,7 @@ export const ArticleParamsForm = ({
 	const [isOpen, setIsOpen] = useState(false);
 
 	const [selectArticleData, setSelectArticleData] = useState(currentArticle);
+	const initialArticleData = useRef(currentArticle);
 
 	const rootRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +44,8 @@ export const ArticleParamsForm = ({
 
 	const handleFormReset = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setSelectArticleData(currentArticle);
+		setSelectArticleData(initialArticleData.current);
+		setCurrentArticle(defaultArticleState);
 	};
 
 	useOutsideClickClose({
